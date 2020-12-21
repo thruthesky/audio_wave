@@ -2,7 +2,7 @@
 
 A multi purpose simple bar graph with animation. It is highly customizable. You can customize the width and height of widget. And the height, color, and radius of bar also.
 
-![audio_wave.gif](audio_wave.gif)
+![audio_wave.gif](https://raw.githubusercontent.com/thruthesky/audio_wave/main/audio_wave.gif)
 
 ## Examples
 

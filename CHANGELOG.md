@@ -1,3 +1,7 @@
+## [0.0.3] - Documentation
+
+- Documentation update
+
 ## [0.0.2] - Documentation
 
 - Documentation update

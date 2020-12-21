@@ -1,6 +1,6 @@
 name: audio_wave
-description: Customizable bar graph(wave graph) with wave animation.
-version: 0.0.2
+description: A highly customizable bar graph(or wave graph) with animation, color, radius, spaces, etc.
+version: 0.0.3
 homepage: https://github.com/thruthesky/audio_wave
 
 environment:

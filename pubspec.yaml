@@ -1,8 +1,7 @@
 name: audio_wave
 description: Customizable bar graph(wave graph) with wave animation.
 version: 0.0.1
-author:
-homepage:
+homepage: https://github.com/thruthesky/audio_wave
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

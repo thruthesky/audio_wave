@@ -1,15 +1,123 @@
-# audio_wave
+# Audio wave
 
-A new Flutter package project.
+A multi purpose simple bar graph with animation. It is highly customizable. You can customize the width and height of widget. And the height, color, and radius of bar also.
 
-## Getting Started
+![audio_wave.gif](audio_wave.gif)
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+## Examples
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
-# audio_wave
+```dart
+Column(
+  children: [
+    Text('Audio Wave Example'),
+    AudioWave(
+      bars: [AudioWaveBar(height: 50)],
+    ),
+    AudioWave(
+      bars: [
+        AudioWaveBar(height: 30, color: Colors.green),
+        AudioWaveBar(height: 70, color: Colors.black),
+      ],
+    ),
+    AudioWave(
+      height: 32,
+      width: 32,
+      spacing: 2.5,
+      animationLoop: 3,
+      bars: [
+        AudioWaveBar(height: 10, color: Colors.lightBlueAccent),
+        AudioWaveBar(height: 30, color: Colors.blue),
+        AudioWaveBar(height: 70, color: Colors.black),
+        AudioWaveBar(height: 40),
+      ],
+    ),
+    AudioWave(
+      height: 32,
+      width: 88,
+      spacing: 2.5,
+      bars: [
+        AudioWaveBar(height: 10, color: Colors.lightBlueAccent),
+        AudioWaveBar(height: 30, color: Colors.blue),
+        AudioWaveBar(height: 70, color: Colors.black),
+        AudioWaveBar(height: 40),
+        AudioWaveBar(height: 20, color: Colors.orange),
+        AudioWaveBar(height: 10, color: Colors.lightBlueAccent),
+        AudioWaveBar(height: 30, color: Colors.blue),
+        AudioWaveBar(height: 70, color: Colors.black),
+        AudioWaveBar(height: 40),
+        AudioWaveBar(height: 20, color: Colors.orange),
+        AudioWaveBar(height: 10, color: Colors.lightBlueAccent),
+        AudioWaveBar(height: 30, color: Colors.blue),
+        AudioWaveBar(height: 70, color: Colors.black),
+        AudioWaveBar(height: 40),
+        AudioWaveBar(height: 20, color: Colors.orange),
+        AudioWaveBar(height: 10, color: Colors.lightBlueAccent),
+        AudioWaveBar(height: 30, color: Colors.blue),
+        AudioWaveBar(height: 70, color: Colors.black),
+        AudioWaveBar(height: 40),
+        AudioWaveBar(height: 20, color: Colors.orange),
+      ],
+    ),
+    AudioWave(
+      height: 32,
+      width: 88,
+      spacing: 2.5,
+      alignment: 'top',
+      animationLoop: 2,
+      beatRate: Duration(milliseconds: 50),
+      bars: [
+        AudioWaveBar(height: 10, color: Colors.lightBlueAccent),
+        AudioWaveBar(height: 30, color: Colors.blue),
+        AudioWaveBar(height: 70, color: Colors.black),
+        AudioWaveBar(height: 40),
+        AudioWaveBar(height: 20, color: Colors.orange),
+        AudioWaveBar(height: 10, color: Colors.lightBlueAccent),
+        AudioWaveBar(height: 30, color: Colors.blue),
+        AudioWaveBar(height: 70, color: Colors.black),
+        AudioWaveBar(height: 40),
+        AudioWaveBar(height: 20, color: Colors.orange),
+        AudioWaveBar(height: 10, color: Colors.lightBlueAccent),
+        AudioWaveBar(height: 30, color: Colors.blue),
+        AudioWaveBar(height: 70, color: Colors.black),
+        AudioWaveBar(height: 40),
+        AudioWaveBar(height: 20, color: Colors.orange),
+        AudioWaveBar(height: 10, color: Colors.lightBlueAccent),
+        AudioWaveBar(height: 30, color: Colors.blue),
+        AudioWaveBar(height: 70, color: Colors.black),
+        AudioWaveBar(height: 40),
+        AudioWaveBar(height: 20, color: Colors.orange),
+      ],
+    ),
+    AudioWave(
+      height: 32,
+      width: 160,
+      spacing: 5,
+      alignment: 'bottom',
+      animationLoop: 2,
+      beatRate: Duration(milliseconds: 50),
+      bars: [
+        AudioWaveBar(height: 10, color: Colors.lightBlueAccent),
+        AudioWaveBar(height: 30, color: Colors.blue),
+        AudioWaveBar(height: 70, color: Colors.black),
+        AudioWaveBar(height: 40),
+        AudioWaveBar(height: 100, color: Colors.orange),
+        AudioWaveBar(height: 90, color: Colors.lightBlueAccent),
+        AudioWaveBar(height: 80, color: Colors.blue),
+        AudioWaveBar(height: 70, color: Colors.black),
+        AudioWaveBar(height: 40),
+        AudioWaveBar(height: 20, color: Colors.orange),
+        AudioWaveBar(height: 10, color: Colors.lightBlueAccent),
+        AudioWaveBar(height: 30, color: Colors.blue),
+        AudioWaveBar(height: 70, color: Colors.black),
+        AudioWaveBar(height: 40),
+        AudioWaveBar(height: 20, color: Colors.orange),
+        AudioWaveBar(height: 10, color: Colors.lightBlueAccent),
+        AudioWaveBar(height: 30, color: Colors.blue),
+        AudioWaveBar(height: 70, color: Colors.black),
+        AudioWaveBar(height: 40),
+        AudioWaveBar(height: 20, color: Colors.orange),
+      ],
+    ),
+  ],
+),
+```

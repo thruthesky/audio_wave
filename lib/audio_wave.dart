@@ -1,9 +1,11 @@
 library audio_wave;
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class AudioWaveBar {
-  AudioWaveBar({this.height, this.color = Colors.red, this.radius = 0.0});
+  AudioWaveBar({this.height, this.color = Colors.red, this.radius = 50.0});
 
   /// [height] is the height of the bar based. It is percentage rate of widget height.
   ///
@@ -25,6 +27,9 @@ class AudioWave extends StatefulWidget {
     this.width = 200,
     this.spacing = 5,
     this.alignment = 'center',
+    this.animation = true,
+    this.animationLoop = 0,
+    this.beatRate = const Duration(milliseconds: 200),
     @required this.bars,
   });
   final List<AudioWaveBar> bars;
@@ -41,14 +46,50 @@ class AudioWave extends StatefulWidget {
 
   /// [alignment] is the alignment of bars. It can be one of 'top', 'center', 'bottom'.
   final String alignment;
+
+  /// [animation] if it is set to true, then the bar will be animated.
+  final bool animation;
+
+  /// [animationLoop] limits no of loops. If it is set to 0, then it loops forever. default is 0.
+  final int animationLoop;
+
+  /// [beatRate] plays how fast/slow the bar animiates.
+  final Duration beatRate;
   @override
   _AudioWaveState createState() => _AudioWaveState();
 }
 
 class _AudioWaveState extends State<AudioWave> {
+  int countBeat = 0;
+
+  List<AudioWaveBar> bars;
+  @override
+  void initState() {
+    super.initState();
+    if (widget.animation) {
+      bars = [];
+      WidgetsBinding.instance.addPostFrameCallback((x) {
+        Timer.periodic(widget.beatRate, (timer) {
+          int mo = countBeat % widget.bars.length;
+
+          bars = List.from(widget.bars.getRange(0, mo + 1));
+          setState(() {});
+          countBeat++;
+
+          if (widget.animationLoop > 0 &&
+              widget.animationLoop <= (countBeat / widget.bars.length)) {
+            timer.cancel();
+          }
+        });
+      });
+    } else {
+      bars = widget.bars;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    print(widget.bars[0].height);
+    // print(bars[0].height);
 
     double width = (widget.width - (widget.spacing * widget.bars.length)) /
         widget.bars.length;
@@ -66,11 +107,14 @@ class _AudioWaveState extends State<AudioWave> {
                     : WrapCrossAlignment.center,
             spacing: widget.spacing,
             children: [
-              for (final bar in widget.bars)
+              for (final bar in bars)
                 Container(
                   height: bar.height * widget.height / 100,
                   width: width,
-                  decoration: BoxDecoration(color: bar.color),
+                  decoration: BoxDecoration(
+                    color: bar.color,
+                    borderRadius: BorderRadius.circular(bar.radius),
+                  ),
                 ),
             ],
           )

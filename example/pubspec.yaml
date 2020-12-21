@@ -13,9 +13,6 @@ dependencies:
 
   cupertino_icons: ^1.0.0
 
-  audio_wave:
-    path: packages/audio_wave
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

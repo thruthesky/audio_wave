@@ -73,7 +73,7 @@ class _AudioWaveState extends State<AudioWave> {
           int mo = countBeat % widget.bars.length;
 
           bars = List.from(widget.bars.getRange(0, mo + 1));
-          setState(() {});
+          if (mounted) setState(() {});
           countBeat++;
 
           if (widget.animationLoop > 0 &&

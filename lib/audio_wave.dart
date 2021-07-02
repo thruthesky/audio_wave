@@ -86,6 +86,13 @@ class _AudioWaveState extends State<AudioWave> {
       bars = widget.bars;
     }
   }
+  
+  @override
+  void didUpdateWidget(AudioWave oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    bars = widget.bars;
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {

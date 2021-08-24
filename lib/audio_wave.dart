@@ -5,7 +5,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class AudioWaveBar {
-  AudioWaveBar({this.height, this.color = Colors.red, this.radius = 50.0});
+  AudioWaveBar({
+    required this.height,
+    this.color = Colors.red,
+    this.radius = 50.0
+  });
 
   /// [height] is the height of the bar based. It is percentage rate of widget height.
   ///
@@ -30,7 +34,7 @@ class AudioWave extends StatefulWidget {
     this.animation = true,
     this.animationLoop = 0,
     this.beatRate = const Duration(milliseconds: 200),
-    @required this.bars,
+    required this.bars,
   });
   final List<AudioWaveBar> bars;
 
@@ -55,6 +59,7 @@ class AudioWave extends StatefulWidget {
 
   /// [beatRate] plays how fast/slow the bar animiates.
   final Duration beatRate;
+
   @override
   _AudioWaveState createState() => _AudioWaveState();
 }
@@ -62,13 +67,15 @@ class AudioWave extends StatefulWidget {
 class _AudioWaveState extends State<AudioWave> {
   int countBeat = 0;
 
-  List<AudioWaveBar> bars;
+  List<AudioWaveBar>? bars;
+
   @override
   void initState() {
     super.initState();
     if (widget.animation) {
       bars = [];
-      WidgetsBinding.instance.addPostFrameCallback((x) {
+
+      WidgetsBinding.instance?.addPostFrameCallback((x) {
         Timer.periodic(widget.beatRate, (timer) {
           int mo = countBeat % widget.bars.length;
 
@@ -89,10 +96,7 @@ class _AudioWaveState extends State<AudioWave> {
 
   @override
   Widget build(BuildContext context) {
-    // print(bars[0].height);
-
-    double width = (widget.width - (widget.spacing * widget.bars.length)) /
-        widget.bars.length;
+    double width = (widget.width - (widget.spacing * widget.bars.length)) / widget.bars.length;
 
     return Container(
       height: widget.height,
@@ -107,15 +111,16 @@ class _AudioWaveState extends State<AudioWave> {
                     : WrapCrossAlignment.center,
             spacing: widget.spacing,
             children: [
-              for (final bar in bars)
-                Container(
-                  height: bar.height * widget.height / 100,
-                  width: width,
-                  decoration: BoxDecoration(
-                    color: bar.color,
-                    borderRadius: BorderRadius.circular(bar.radius),
+              if (bars != null)
+                for (final bar in bars!)
+                  Container(
+                    height: bar.height * widget.height / 100,
+                    width: width,
+                    decoration: BoxDecoration(
+                      color: bar.color,
+                      borderRadius: BorderRadius.circular(bar.radius),
+                    ),
                   ),
-                ),
             ],
           )
         ],

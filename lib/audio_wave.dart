@@ -6,36 +6,42 @@ import 'package:flutter/material.dart';
 
 class AudioWaveBar {
   AudioWaveBar({
-    required this.height,
+    required this.heightFactor,
     this.color = Colors.red,
-    this.radius = 50.0
-  });
+    this.radius = 50.0,
+    this.gradient,
+  })  : assert(heightFactor <= 1),
+        assert(heightFactor >= 0);
 
-  /// [height] is the height of the bar based. It is percentage rate of widget height.
+  /// [heightFactor] is the height of the bar based. It is percentage rate of widget height.
   ///
-  /// If it's set to 30, then it will be 30% height from the widget height.
+  /// If it's set to 0.5, then it will be 50% height from the widget height.
   ///
-  /// [height] of bar must be between 0 to 100. Or There will be side effect.
-  double height;
+  /// [heightFactor] of bar must be between 0 to 1. Or There will be side effect.
+  double heightFactor;
 
   /// [color] is the color of the bar
   Color color;
 
   /// [radius] is the radius of bar
   double radius;
+
+  /// [gradient] is the gradient of bar
+  final Gradient? gradient;
 }
 
 class AudioWave extends StatefulWidget {
-  AudioWave({
-    this.height = 100,
-    this.width = 200,
-    this.spacing = 5,
-    this.alignment = 'center',
-    this.animation = true,
-    this.animationLoop = 0,
-    this.beatRate = const Duration(milliseconds: 200),
-    required this.bars,
-  });
+  const AudioWave(
+      {required this.bars,
+      this.height = 100,
+      this.width = 200,
+      this.spacing = 5,
+      this.alignment = 'center',
+      this.animation = true,
+      this.animationLoop = 0,
+      this.beatRate = const Duration(milliseconds: 200),
+      Key? key})
+      : super(key: key);
   final List<AudioWaveBar> bars;
 
   /// [height] is the height of the widget.
@@ -57,7 +63,7 @@ class AudioWave extends StatefulWidget {
   /// [animationLoop] limits no of loops. If it is set to 0, then it loops forever. default is 0.
   final int animationLoop;
 
-  /// [beatRate] plays how fast/slow the bar animiates.
+  /// [beatRate] plays how fast/slow the bar animates.
   final Duration beatRate;
 
   @override
@@ -83,8 +89,7 @@ class _AudioWaveState extends State<AudioWave> {
           if (mounted) setState(() {});
           countBeat++;
 
-          if (widget.animationLoop > 0 &&
-              widget.animationLoop <= (countBeat / widget.bars.length)) {
+          if (widget.animationLoop > 0 && widget.animationLoop <= (countBeat / widget.bars.length)) {
             timer.cancel();
           }
         });
@@ -93,7 +98,7 @@ class _AudioWaveState extends State<AudioWave> {
       bars = widget.bars;
     }
   }
-  
+
   @override
   void didUpdateWidget(AudioWave oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -105,7 +110,7 @@ class _AudioWaveState extends State<AudioWave> {
   Widget build(BuildContext context) {
     double width = (widget.width - (widget.spacing * widget.bars.length)) / widget.bars.length;
 
-    return Container(
+    return SizedBox(
       height: widget.height,
       width: widget.width,
       child: Row(
@@ -121,9 +126,10 @@ class _AudioWaveState extends State<AudioWave> {
               if (bars != null)
                 for (final bar in bars!)
                   Container(
-                    height: bar.height * widget.height / 100,
+                    height: bar.heightFactor * widget.height,
                     width: width,
                     decoration: BoxDecoration(
+                      gradient: bar.gradient,
                       color: bar.color,
                       borderRadius: BorderRadius.circular(bar.radius),
                     ),

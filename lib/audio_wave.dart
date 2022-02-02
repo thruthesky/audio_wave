@@ -31,17 +31,17 @@ class AudioWaveBar {
 }
 
 class AudioWave extends StatefulWidget {
-  AudioWave({
-    this.height = 100,
-    this.width = 200,
-    this.spacing = 5,
-    this.alignment = 'center',
-    this.animation = true,
-    this.animationLoop = 0,
-    this.beatRate = const Duration(milliseconds: 200),
-    required this.bars,
-  });
-
+  const AudioWave(
+      {required this.bars,
+      this.height = 100,
+      this.width = 200,
+      this.spacing = 5,
+      this.alignment = 'center',
+      this.animation = true,
+      this.animationLoop = 0,
+      this.beatRate = const Duration(milliseconds: 200),
+      Key? key})
+      : super(key: key);
   final List<AudioWaveBar> bars;
 
   /// [height] is the height of the widget.

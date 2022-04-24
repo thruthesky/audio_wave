@@ -89,7 +89,8 @@ class _AudioWaveState extends State<AudioWave> {
           if (mounted) setState(() {});
           countBeat++;
 
-          if (widget.animationLoop > 0 && widget.animationLoop <= (countBeat / widget.bars.length)) {
+          if (widget.animationLoop > 0 &&
+              widget.animationLoop <= (countBeat / widget.bars.length)) {
             timer.cancel();
           }
         });
@@ -108,7 +109,8 @@ class _AudioWaveState extends State<AudioWave> {
 
   @override
   Widget build(BuildContext context) {
-    double width = (widget.width - (widget.spacing * widget.bars.length)) / widget.bars.length;
+    double width = (widget.width - (widget.spacing * widget.bars.length)) /
+        widget.bars.length;
 
     return SizedBox(
       height: widget.height,

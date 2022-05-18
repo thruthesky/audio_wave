@@ -81,7 +81,7 @@ class _AudioWaveState extends State<AudioWave> {
     if (widget.animation) {
       bars = [];
 
-      WidgetsBinding.instance?.addPostFrameCallback((x) {
+      WidgetsBinding.instance.addPostFrameCallback((x) {
         Timer.periodic(widget.beatRate, (timer) {
           int mo = countBeat % widget.bars.length;
 

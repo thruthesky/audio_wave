@@ -1,3 +1,7 @@
+## [0.1.4]
+
+- Patch for Flutter version 3.
+
 ## [0.1.3]
 
 - Update version mismatch

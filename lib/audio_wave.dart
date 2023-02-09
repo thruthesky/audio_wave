@@ -75,6 +75,8 @@ class _AudioWaveState extends State<AudioWave> {
 
   List<AudioWaveBar>? bars;
 
+  Timer? timer;
+
   @override
   void initState() {
     super.initState();
@@ -82,7 +84,7 @@ class _AudioWaveState extends State<AudioWave> {
       bars = [];
 
       WidgetsBinding.instance.addPostFrameCallback((x) {
-        Timer.periodic(widget.beatRate, (timer) {
+        timer = Timer.periodic(widget.beatRate, (timer) {
           if (widget.bars.isEmpty)
             bars = [];
           else {
@@ -108,6 +110,12 @@ class _AudioWaveState extends State<AudioWave> {
     super.didUpdateWidget(oldWidget);
     bars = widget.bars;
     setState(() {});
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    timer?.cancel();
   }
 
   @override

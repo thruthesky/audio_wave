@@ -1,3 +1,8 @@
+## [0.1.5]
+
+- Fix. memory leak.
+- Merge pull request from community. Thank you bensonarafat and zvikarp.
+
 ## [0.1.4]
 
 - Patch for Flutter version 3.
